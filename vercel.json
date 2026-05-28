@@ -1,7 +1,5 @@
 {
   "name": "dictate-alukim",
-  "version": 2,
-  "public": true,
   "buildCommand": "npm run build",
   "routes": [
     {
@@ -9,8 +7,8 @@
       "dest": "/api/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "src": "/.*",
+      "dest": "/public/index.html"
     }
   ]
 }
