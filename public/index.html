@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AlukimDictate - Bezplatný diktovací asistent pre Mac</title>
+  <title>AlukimDictate - Vrátite si 10 hodín týždenne</title>
   <style>
     * {
       margin: 0;
@@ -12,13 +12,12 @@
     }
 
     html, body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0e27;
+      color: #f0f0f0;
       line-height: 1.6;
     }
 
-    /* Navigation */
     nav {
       position: fixed;
       top: 0;
@@ -28,298 +27,198 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.2rem 2rem;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(10, 14, 39, 0.95);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid rgba(255, 107, 53, 0.2);
       z-index: 100;
     }
 
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
       font-weight: 700;
       font-size: 1.2rem;
-      color: #1a1a1a;
-    }
-
-    .nav-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
+      color: #ff6b35;
     }
 
     .lang-toggle {
-      background: #f5f5f5;
-      border: 1px solid #e0e0e0;
+      background: rgba(255, 107, 53, 0.1);
+      border: 1px solid rgba(255, 107, 53, 0.3);
       padding: 0.5rem 1rem;
       border-radius: 6px;
       cursor: pointer;
       font-weight: 500;
-      font-size: 0.9rem;
+      color: #ff6b35;
       transition: all 0.3s;
     }
 
     .lang-toggle:hover {
-      background: #efefef;
-      border-color: #d0d0d0;
+      background: rgba(255, 107, 53, 0.2);
     }
 
     /* Hero */
     .hero {
       padding-top: 120px;
-      padding-bottom: 80px;
+      padding-bottom: 60px;
       text-align: center;
-      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    }
-
-    .hero-icon {
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-      border-radius: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      margin: 0 auto 2rem;
-      box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 800;
-      color: #1a1a1a;
-      margin-bottom: 1rem;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
       line-height: 1.1;
     }
 
-    .tagline {
-      font-size: 1.3rem;
-      color: #666;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      font-weight: 300;
+    .subheading {
+      font-size: 1.4rem;
+      color: #ff6b35;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
 
-    .cta-primary {
+    .hero-text {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.15rem;
+      color: #d0d0d0;
+      line-height: 1.8;
+    }
+
+    .cta-button {
       display: inline-block;
       background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
       color: white;
-      padding: 1rem 2.5rem;
-      border-radius: 12px;
+      padding: 1.2rem 2.8rem;
+      border-radius: 10px;
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       border: none;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 12px 30px rgba(255, 107, 53, 0.3);
+      box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
       text-decoration: none;
     }
 
-    .cta-primary:hover {
+    .cta-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(255, 107, 53, 0.4);
+      box-shadow: 0 20px 50px rgba(255, 107, 53, 0.6);
     }
 
-    /* Features Section */
-    .features-section {
-      padding: 6rem 2rem;
-      max-width: 1200px;
+    /* Section */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 700;
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 2rem;
       text-align: center;
-      margin-bottom: 4rem;
-      color: #1a1a1a;
     }
 
-    .features-grid {
+    .problem {
+      background: rgba(255, 107, 53, 0.08);
+      border: 1px solid rgba(255, 107, 53, 0.2);
+      border-radius: 12px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .problem h3 {
+      color: #ff6b35;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .problem p {
+      font-size: 1.1rem;
+      color: #d0d0d0;
+      line-height: 1.8;
+    }
+
+    .benefits-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-      margin-bottom: 4rem;
+      gap: 2rem;
+      margin-bottom: 3rem;
     }
 
-    .feature-card {
-      padding: 2.5rem;
-      background: #f8f9fa;
-      border-radius: 16px;
-      border: 1px solid #e9ecef;
+    .benefit {
+      background: rgba(255, 107, 53, 0.05);
+      border: 1px solid rgba(255, 107, 53, 0.15);
+      padding: 2rem;
+      border-radius: 10px;
       transition: all 0.3s;
     }
 
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-      border-color: #ff6b35;
+    .benefit:hover {
+      background: rgba(255, 107, 53, 0.1);
+      border-color: rgba(255, 107, 53, 0.3);
+      transform: translateY(-5px);
     }
 
-    .feature-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-title {
-      font-size: 1.3rem;
-      font-weight: 700;
+    .benefit h4 {
+      color: #ff6b35;
+      font-size: 1.2rem;
       margin-bottom: 0.8rem;
-      color: #1a1a1a;
     }
 
-    .feature-desc {
-      color: #666;
-      font-size: 1rem;
-      line-height: 1.6;
+    .benefit p {
+      color: #b0b0b0;
+      line-height: 1.7;
     }
 
-    /* How It Works */
-    .how-section {
-      padding: 6rem 2rem;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      color: white;
-    }
-
-    .how-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .how-section .section-title {
-      color: white;
-    }
-
-    .steps {
+    .how-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
     }
 
     .step {
-      position: relative;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
+      background: rgba(255, 107, 53, 0.08);
+      padding: 2.5rem;
+      border-radius: 10px;
+      border-left: 4px solid #ff6b35;
     }
 
     .step-number {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #ff6b35;
       margin-bottom: 1rem;
     }
 
-    .step-title {
+    .step h4 {
       font-size: 1.2rem;
-      font-weight: 700;
+      color: #ffffff;
       margin-bottom: 0.8rem;
     }
 
-    .step-desc {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    /* Why Section */
-    .why-section {
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .why-content h2 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      color: #1a1a1a;
-    }
-
-    .why-list {
-      list-style: none;
-    }
-
-    .why-list li {
-      padding: 1.2rem 0;
-      padding-left: 3rem;
-      position: relative;
-      font-size: 1.05rem;
-      color: #333;
+    .step p {
+      color: #a0a0a0;
       line-height: 1.6;
     }
 
-    .why-list li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-    }
-
-    .why-image {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      border-radius: 16px;
-      padding: 3rem;
-      text-align: center;
-      font-size: 4rem;
-    }
-
-    /* Stats */
     .stats-section {
-      padding: 4rem 2rem;
-      background: #f8f9fa;
-      border-top: 1px solid #e9ecef;
-      border-bottom: 1px solid #e9ecef;
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(247, 147, 30, 0.08) 100%);
+      border: 1px solid rgba(255, 107, 53, 0.2);
+      border-radius: 12px;
+      padding: 3rem;
+      margin: 3rem 0;
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
       text-align: center;
     }
 
     .stat {
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
     .stat-number {
@@ -330,37 +229,37 @@
     }
 
     .stat-label {
-      color: #666;
+      color: #a0a0a0;
       font-size: 1rem;
     }
 
-    /* CTA Section */
     .cta-section {
-      padding: 6rem 2rem;
       text-align: center;
+      padding: 4rem 2rem;
       background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-      color: white;
+      border-radius: 12px;
+      margin: 3rem 0;
     }
 
-    .cta-section h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
+    .cta-section h3 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 1rem;
     }
 
     .cta-section p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
       margin-bottom: 2rem;
-      opacity: 0.95;
     }
 
-    .cta-secondary {
+    .cta-button-white {
       display: inline-block;
       background: white;
       color: #ff6b35;
       padding: 1rem 2.5rem;
-      border-radius: 12px;
-      font-weight: 600;
+      border-radius: 10px;
+      font-weight: 700;
       border: none;
       cursor: pointer;
       font-size: 1.05rem;
@@ -368,9 +267,9 @@
       text-decoration: none;
     }
 
-    .cta-secondary:hover {
+    .cta-button-white:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     }
 
     /* Modal */
@@ -381,8 +280,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -394,19 +293,20 @@
     }
 
     .modal {
-      background: white;
+      background: #1a2042;
+      border: 1px solid rgba(255, 107, 53, 0.3);
       border-radius: 16px;
-      padding: 2.5rem;
-      max-width: 450px;
+      padding: 3rem;
+      max-width: 480px;
       width: 100%;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
       animation: slideUp 0.3s ease;
       position: relative;
     }
 
     @keyframes slideUp {
       from {
-        transform: translateY(30px);
+        transform: translateY(40px);
         opacity: 0;
       }
       to {
@@ -421,9 +321,9 @@
       right: 1.5rem;
       background: none;
       border: none;
-      font-size: 1.8rem;
+      font-size: 2rem;
       cursor: pointer;
-      color: #999;
+      color: #666;
       transition: color 0.3s;
     }
 
@@ -432,52 +332,61 @@
     }
 
     .modal h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 1.9rem;
+      color: #ffffff;
       margin-bottom: 1rem;
-      color: #1a1a1a;
+    }
+
+    .modal-subtitle {
+      color: #ff6b35;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
 
     .modal p {
-      color: #666;
+      color: #a0a0a0;
       margin-bottom: 1.5rem;
-      font-size: 1rem;
+      line-height: 1.6;
     }
 
     .form-group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 0.5rem;
-      color: #1a1a1a;
-      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #ffffff;
+      font-weight: 600;
     }
 
     .form-group input {
       width: 100%;
-      padding: 0.9rem;
-      border: 1px solid #ddd;
+      padding: 1rem;
+      background: rgba(255, 107, 53, 0.05);
+      border: 1px solid rgba(255, 107, 53, 0.2);
       border-radius: 8px;
+      color: #ffffff;
       font-size: 1rem;
       transition: all 0.3s;
     }
 
     .form-group input:focus {
       outline: none;
+      background: rgba(255, 107, 53, 0.1);
       border-color: #ff6b35;
       box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
     }
 
     .error-message {
-      color: #d32f2f;
-      padding: 0.8rem;
-      background: #ffebee;
+      color: #ff6b6b;
+      padding: 0.9rem;
+      background: rgba(255, 107, 107, 0.15);
       border-radius: 6px;
       margin-bottom: 1rem;
       display: none;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
 
     .error-message.active {
@@ -494,8 +403,14 @@
     }
 
     .success-icon {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 1rem;
+      animation: pulse 0.5s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.8); }
+      100% { transform: scale(1); }
     }
 
     .download-link {
@@ -503,156 +418,131 @@
       background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
       color: white;
       padding: 1rem 2rem;
-      border-radius: 12px;
+      border-radius: 10px;
       text-decoration: none;
-      font-weight: 600;
-      margin-bottom: 1rem;
+      font-weight: 700;
+      margin: 1.5rem 0;
       transition: all 0.3s;
+      font-size: 1.05rem;
     }
 
     .download-link:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(255, 107, 53, 0.3);
+      box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
     }
 
-    /* Responsive */
+    .success-text {
+      color: #a0a0a0;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
     @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .tagline {
-        font-size: 1.1rem;
-      }
-
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 100px;
-      }
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.8rem; }
+      .subheading { font-size: 1.1rem; }
+      .hero-text { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <nav>
-    <div class="nav-logo">
-      <div class="nav-icon">🎤</div>
-      <span id="navTitle">AlukimDictate</span>
-    </div>
+    <div class="nav-logo">AlukimDictate</div>
     <button class="lang-toggle" id="langToggle">EN</button>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-icon">🎤</div>
-    <h1 id="heroTitle">Nadiktuj, nepíš</h1>
-    <p class="tagline" id="heroSubtitle">Profesionálny diktovací asistent pre macOS. Preveď reč na text jedným dvojklikom. Zadarmo, trvale.</p>
-    <button class="cta-primary" id="ctaDownload" onclick="openModal()">Stiahnúť aplikáciu zadarmo</button>
+    <div class="subheading" id="subheading">Vrátite si 10 hodín týždenne</div>
+    <h1 id="h1">Prestane písať. Začni diktovať.</h1>
+    <p class="hero-text" id="heroText">Väčšina ľudí trávi 10-15 hodín týždenne písaním emailov, poznámok a správ. To sú 40+ hodín mesiac, ktoré stratíte písaním.<br><br>AlukimDictate to zmení. Diktuj 3x rýchlejšie. Bez registrácie. Bez poplatkov.</p>
+    <button class="cta-button" onclick="openModal()" id="ctaMain">Stiahnúť zadarmo</button>
   </section>
 
-  <!-- Features -->
-  <section class="features-section">
-    <h2 class="section-title" id="featuresTitle">Prečo AlukimDictate?</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3 class="feature-title" id="f1">Ultrarýchle</h3>
-        <p class="feature-desc" id="f1d">Transcribuje v reálnom čase s 99% presnosťou. Okamžité výsledky bez čakania.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3 class="feature-title" id="f2">Tvoje súkromie</h3>
-        <p class="feature-desc" id="f2d">Audio sa nikdy neodesieľa na servery. Všetko zostáva na tvojom Macu.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3 class="feature-title" id="f3">Všade dostupné</h3>
-        <p class="feature-desc" id="f3d">Globálna klávesová skratka. Diktuj v akejkoľvek aplikácii na Macu.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">💰</div>
-        <h3 class="feature-title" id="f4">Navždy zadarmo</h3>
-        <p class="feature-desc" id="f4d">Žiadne skryté poplatky. Žiadne limity. Žiadny freemium.</p>
-      </div>
+  <!-- Problem -->
+  <section>
+    <div class="problem">
+      <h3 id="problemTitle">Problém, ktorý už máš</h3>
+      <p id="problemText">Strácaš čas. Každý deň. Klikáš, píšeš, opravuješ. Klikáš, píšeš, opravuješ. Tvoja ruky bolí. Tvoja produktivita padá. A naozaj, keď máš dobré myšlienky, posledné čo chceš urobiť je sadnúť si a ručne všetko napísať.</p>
     </div>
   </section>
 
-  <!-- Why Section -->
-  <section class="why-section">
-    <div class="why-grid">
-      <div class="why-content">
-        <h2 id="whyTitle">Kto by to mal používať?</h2>
-        <ul class="why-list">
-          <li id="why1">Blogéri a copywriteri - napíš článok 2x rýchlejšie</li>
-          <li id="why2">Vývojári - diktuj poznámky a komentáre do kódu</li>
-          <li id="why3">Študenti - záznamuj prednášky a vytváraj poznámky</li>
-          <li id="why4">Vrátane všetkých - ktorí chcú byť produktívnejší</li>
-        </ul>
+  <!-- Benefits -->
+  <section>
+    <h2 id="benefitsTitle">Čo získaš</h2>
+    <div class="benefits-grid">
+      <div class="benefit">
+        <h4 id="b1">⚡ 3x rýchlejšie</h4>
+        <p id="b1d">Diktovať je 3x rýchlejšie ako písať. Vezmi svoje 10 strácanych hodín a skonvertuj ich na 40 minut práce.</p>
       </div>
-      <div class="why-image">
-        🎙️
+      <div class="benefit">
+        <h4 id="b2">🔒 Bez strát dát</h4>
+        <p id="b2d">Audio nikdy neopúšťa tvoj Mac. Žiadne servery. Žiadne záznamy. Tvoj obsah zostáva tvoj.</p>
+      </div>
+      <div class="benefit">
+        <h4 id="b3">🌍 Všade funguje</h4>
+        <p id="b3d">Email, Slack, Notes, Dokumenty... Diktuj kdekoľvek. Dvakrát stiskni Command a hovor. Text sa sám vloží.</p>
+      </div>
+      <div class="benefit">
+        <h4 id="b4">💯 99% presnosť</h4>
+        <p id="b4d">AI koja rozumie kontextu. Nie sú chyby ako "banana" namiesto "business". Reálne 99% presnosť.</p>
       </div>
     </div>
   </section>
 
   <!-- How It Works -->
-  <section class="how-section">
-    <div class="how-container">
-      <h2 class="section-title" id="howTitle">Ako to funguje?</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3 class="step-title" id="s1">Stiahni a nainštaluj</h3>
-          <p class="step-desc" id="s1d">Stiahnite aplikáciu a dvakrát kliknite na .app súbor. Hotovo za 10 sekúnd.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3 class="step-title" id="s2">Pridaj Groq API kľúč</h3>
-          <p class="step-desc" id="s2d">Vezmi si bezplatný API kľúč z <a href="https://console.groq.com" target="_blank" style="color: #ff6b35;">Groq konzoly</a> a vložiť do nastavení.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3 class="step-title" id="s3">Začni diktovať</h3>
-          <p class="step-desc" id="s3d">Dvakrát stiskni pravý Command, hovor a Text sa automaticky vloží kdekoľvek.</p>
-        </div>
+  <section>
+    <h2 id="howTitle">Ako to funguje</h2>
+    <div class="how-steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4 id="s1">Stiahni (30 sekúnd)</h4>
+        <p id="s1d">Download. Dvakrát klikni. Hotovo. Nie sú žiadne konfigurácie alebo komplikácie.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4 id="s2">Pridaj kľúč (2 minúty)</h4>
+        <p id="s2d">Bezplatný API z Groq. Vlepí sa do settings. Bez kreditnej karty, bez dlhoročného zápisu.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4 id="s3">Diktuj (každý deň)</h4>
+        <p id="s3d">⌘⌘ + hovor. Text sa vloží kdekoľvek. Bez čakania. Bez editovania. Okamžitý výsledok.</p>
       </div>
     </div>
   </section>
 
   <!-- Stats -->
-  <section class="stats-section">
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="stat-number">99%</div>
-        <div class="stat-label" id="stat1">Presnosť</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">8h</div>
-        <div class="stat-label" id="stat2">Bezplatne za deň</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">&lt;1s</div>
-        <div class="stat-label" id="stat3">Priemerný čas</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">€0</div>
-        <div class="stat-label" id="stat4">Cena navždy</div>
+  <section>
+    <div class="stats-section">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number">99%</div>
+          <div class="stat-label" id="stat1">Presnosť AI</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">0€</div>
+          <div class="stat-label" id="stat2">Navždy</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">&lt;1s</div>
+          <div class="stat-label" id="stat3">Rýchlosť</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">8h</div>
+          <div class="stat-label" id="stat4">Bezplatne/deň</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <h2 id="ctaTitle">Pripravený na zmenu?</h2>
-    <p id="ctaSubtitle">Začni diktovať zadarmo. Bez registrácie, bez poplatkov.</p>
-    <button class="cta-secondary" onclick="openModal()" id="ctaFinal">Stiahnúť AlukimDictate</button>
+  <!-- Final CTA -->
+  <section>
+    <div class="cta-section">
+      <h3 id="ctaTitle">Prestani traziť čas.</h3>
+      <p id="ctaSubtitle">Skús teraz. Zadarmo. Bez zmiešaností.</p>
+      <button class="cta-button-white" onclick="openModal()" id="ctaFinal">Stiahnúť AlukimDictate</button>
+    </div>
   </section>
 
   <!-- Modal -->
@@ -661,15 +551,18 @@
       <button class="modal-close" onclick="closeModal()">&times;</button>
 
       <div id="modalForm">
-        <h2 id="modalTitle">Stiahnúť aplikáciu</h2>
-        <p id="modalDesc">Zadaj svoj email a pošleme ti bezpečný download link.</p>
+        <h2 id="modalTitle">Pripravený?</h2>
+        <div class="modal-subtitle" id="modalSubtitle">Zadaj email a pošleme ti download link (30 sekúnd)</div>
+        <p id="modalDesc">Žiadne dlouhé formuláre. Žiadne zbytočné otázky. Len email a link. To je všetko.</p>
+
         <div class="error-message" id="errorMessage"></div>
+
         <form onsubmit="handleSubmit(event)" id="emailForm">
           <div class="form-group">
-            <label for="email" id="emailLabel">E-mail</label>
-            <input type="email" id="email" required placeholder="tvoj@email.sk">
+            <label for="email" id="emailLabel">Email adresa</label>
+            <input type="email" id="email" required placeholder="tvoj@email.sk" autocomplete="email">
           </div>
-          <button type="submit" class="cta-primary" style="width: 100%;" id="submitBtn">Pošli mi link</button>
+          <button type="submit" class="cta-button" style="width: 100%;" id="submitBtn">Pošli mi link</button>
         </form>
       </div>
 
@@ -677,8 +570,8 @@
         <div class="success-icon">✓</div>
         <h2 id="successTitle">Hotovo!</h2>
         <p id="successDesc">Tvoj unikátny download link:</p>
-        <a href="#" class="download-link" id="downloadLink">📥 Stiahnúť AlukimDictate.zip</a>
-        <p style="color: #999; font-size: 0.9rem; margin-top: 1rem;" id="expiryNote">Link vyprší za 24 hodín</p>
+        <a href="#" class="download-link" id="downloadLink">Stiahnúť AlukimDictate</a>
+        <p class="success-text" id="expiryNote">Link je platný 24 hodín. Používaj ho kdekoľvek chceš.</p>
       </div>
     </div>
   </div>
@@ -687,67 +580,63 @@
     const translations = {
       sk: {
         langBtn: 'EN',
-        navTitle: 'AlukimDictate',
-        heroTitle: 'Nadiktuj, nepíš',
-        heroSubtitle: 'Profesionálny diktovací asistent pre macOS. Preveď reč na text jedným dvojklikom. Zadarmo, trvale.',
-        ctaDownload: 'Stiahnúť aplikáciu zadarmo',
-        featuresTitle: 'Prečo AlukimDictate?',
-        f1: 'Ultrarýchle', f1d: 'Transcribuje v reálnom čase s 99% presnosťou. Okamžité výsledky bez čakania.',
-        f2: 'Tvoje súkromie', f2d: 'Audio sa nikdy neodesieľa na servery. Všetko zostáva na tvojom Macu.',
-        f3: 'Všade dostupné', f3d: 'Globálna klávesová skratka. Diktuj v akejkoľvek aplikácii na Macu.',
-        f4: 'Navždy zadarmo', f4d: 'Žiadne skryté poplatky. Žiadne limity. Žiadny freemium.',
-        whyTitle: 'Kto by to mal používať?',
-        why1: 'Blogéri a copywriteri - napíš článok 2x rýchlejšie',
-        why2: 'Vývojári - diktuj poznámky a komentáre do kódu',
-        why3: 'Študenti - záznamuj prednášky a vytváraj poznámky',
-        why4: 'Vrátane všetkých - ktorí chcú byť produktívnejší',
-        howTitle: 'Ako to funguje?',
-        s1: 'Stiahni a nainštaluj', s1d: 'Stiahnite aplikáciu a dvakrát kliknite na .app súbor. Hotovo za 10 sekúnd.',
-        s2: 'Pridaj Groq API kľúč', s2d: 'Vezmi si bezplatný API kľúč z Groq konzoly a vložiť do nastavení.',
-        s3: 'Začni diktovať', s3d: 'Dvakrát stiskni pravý Command, hovor a Text sa automaticky vloží kdekoľvek.',
-        stat1: 'Presnosť', stat2: 'Bezplatne za deň', stat3: 'Priemerný čas', stat4: 'Cena navždy',
-        ctaTitle: 'Pripravený na zmenu?',
-        ctaSubtitle: 'Začni diktovať zadarmo. Bez registrácie, bez poplatkov.',
+        subheading: 'Vrátite si 10 hodín týždenne',
+        h1: 'Prestane písať. Začni diktovať.',
+        heroText: 'Väčšina ľudí trávi 10-15 hodín týždenne písaním emailov, poznámok a správ. To sú 40+ hodín mesiac, ktoré stratíte písaním.\n\nAlukimDictate to zmení. Diktuj 3x rýchlejšie. Bez registrácie. Bez poplatkov.',
+        ctaMain: 'Stiahnúť zadarmo',
+        problemTitle: 'Problém, ktorý už máš',
+        problemText: 'Strácaš čas. Každý deň. Klikáš, píšeš, opravuješ. Klikáš, píšeš, opravuješ. Tvoja ruky bolí. Tvoja produktivita padá. A naozaj, keď máš dobré myšlienky, posledné čo chceš urobiť je sadnúť si a ručne všetko napísať.',
+        benefitsTitle: 'Čo získaš',
+        b1: '⚡ 3x rýchlejšie', b1d: 'Diktovať je 3x rýchlejšie ako písať. Vezmi svoje 10 strácanych hodín a skonvertuj ich na 40 minut práce.',
+        b2: '🔒 Bez strát dát', b2d: 'Audio nikdy neopúšťa tvoj Mac. Žiadne servery. Žiadne záznamy. Tvoj obsah zostáva tvoj.',
+        b3: '🌍 Všade funguje', b3d: 'Email, Slack, Notes, Dokumenty... Diktuj kdekoľvek. Dvakrát stiskni Command a hovor. Text sa sám vloží.',
+        b4: '💯 99% presnosť', b4d: 'AI koja rozumie kontextu. Nie sú chyby ako "banana" namiesto "business". Reálne 99% presnosť.',
+        howTitle: 'Ako to funguje',
+        s1: 'Stiahni (30 sekúnd)', s1d: 'Download. Dvakrát klikni. Hotovo. Nie sú žiadne konfigurácie alebo komplikácie.',
+        s2: 'Pridaj kľúč (2 minúty)', s2d: 'Bezplatný API z Groq. Vlepí sa do settings. Bez kreditnej karty, bez dlhoročného zápisu.',
+        s3: 'Diktuj (každý deň)', s3d: '⌘⌘ + hovor. Text sa vloží kdekoľvek. Bez čakania. Bez editovania. Okamžitý výsledok.',
+        stat1: 'Presnosť AI', stat2: 'Navždy', stat3: 'Rýchlosť', stat4: 'Bezplatne/deň',
+        ctaTitle: 'Prestani traziť čas.',
+        ctaSubtitle: 'Skús teraz. Zadarmo. Bez zmiešaností.',
         ctaFinal: 'Stiahnúť AlukimDictate',
-        modalTitle: 'Stiahnúť aplikáciu',
-        modalDesc: 'Zadaj svoj email a pošleme ti bezpečný download link.',
-        emailLabel: 'E-mail',
+        modalTitle: 'Pripravený?',
+        modalSubtitle: 'Zadaj email a pošleme ti download link (30 sekúnd)',
+        modalDesc: 'Žiadne dlouhé formuláre. Žiadne zbytočné otázky. Len email a link. To je všetko.',
+        emailLabel: 'Email adresa',
         submitBtn: 'Pošli mi link',
         successTitle: 'Hotovo!',
         successDesc: 'Tvoj unikátny download link:',
-        expiryNote: 'Link vyprší za 24 hodín'
+        expiryNote: 'Link je platný 24 hodín. Používaj ho kdekoľvek chceš.'
       },
       en: {
         langBtn: 'SK',
-        navTitle: 'AlukimDictate',
-        heroTitle: 'Dictate, Don\'t Type',
-        heroSubtitle: 'Professional dictation assistant for macOS. Convert speech to text with one double-click. Free, forever.',
-        ctaDownload: 'Download for Free',
-        featuresTitle: 'Why AlukimDictate?',
-        f1: 'Ultra Fast', f1d: 'Real-time transcription with 99% accuracy. Instant results, zero waiting.',
-        f2: 'Your Privacy', f2d: 'Audio never leaves your Mac. Everything stays local and secure.',
-        f3: 'Works Everywhere', f3d: 'Global hotkey. Dictate in any app on your Mac.',
-        f4: 'Free Forever', f4d: 'No hidden fees. No limits. No freemium nonsense.',
-        whyTitle: 'Who should use it?',
-        why1: 'Bloggers & Copywriters - write articles 2x faster',
-        why2: 'Developers - dictate code comments and documentation',
-        why3: 'Students - record lectures and create notes',
-        why4: 'Everyone - who wants to be more productive',
-        howTitle: 'How It Works',
-        s1: 'Download & Install', s1d: 'Download the app and double-click the .app file. Done in 10 seconds.',
-        s2: 'Add Groq API Key', s2d: 'Get a free API key from Groq console and paste it in settings.',
-        s3: 'Start Dictating', s3d: 'Double-tap right Command, speak, and text appears instantly.',
-        stat1: 'Accuracy', stat2: 'Free per day', stat3: 'Average speed', stat4: 'Price forever',
-        ctaTitle: 'Ready to change how you work?',
-        ctaSubtitle: 'Start dictating for free. No signup, no fees.',
+        subheading: 'Get back 10 hours a week',
+        h1: 'Stop typing. Start dictating.',
+        heroText: 'Most people waste 10-15 hours a week typing emails, notes, and messages. That\'s 40+ hours a month lost to typing.\n\nAlukimDictate changes that. Dictate 3x faster. No signup. No fees.',
+        ctaMain: 'Download free',
+        problemTitle: 'The problem you already have',
+        problemText: 'You\'re losing time. Every single day. Click, type, fix. Click, type, fix. Your hands hurt. Your productivity drops. And honestly, when you have a good idea, the last thing you want to do is sit down and manually type it all out.',
+        benefitsTitle: 'What you get',
+        b1: '⚡ 3x faster', b1d: 'Dictating is 3x faster than typing. Take your 10 wasted hours and convert them to 40 minutes of work.',
+        b2: '🔒 No data loss', b2d: 'Audio never leaves your Mac. No servers. No recordings. Your content stays yours.',
+        b3: '🌍 Works everywhere', b3d: 'Email, Slack, Notes, Documents... Dictate anywhere. Double-tap Command and speak. Text inserts itself.',
+        b4: '💯 99% accurate', b4d: 'AI that understands context. No errors like "banana" instead of "business". Real 99% accuracy.',
+        howTitle: 'How it works',
+        s1: 'Download (30 seconds)', s1d: 'Download. Double-click. Done. No configuration or complications.',
+        s2: 'Add key (2 minutes)', s2d: 'Free API from Groq. Paste into settings. No credit card, no long-term signup.',
+        s3: 'Dictate (every day)', s3d: '⌘⌘ + speak. Text inserts anywhere. No waiting. No editing. Instant result.',
+        stat1: 'AI Accuracy', stat2: 'Forever', stat3: 'Speed', stat4: 'Free/day',
+        ctaTitle: 'Stop wasting time.',
+        ctaSubtitle: 'Try now. Free. No bullshit.',
         ctaFinal: 'Download AlukimDictate',
-        modalTitle: 'Download App',
-        modalDesc: 'Enter your email and we\'ll send you a secure download link.',
-        emailLabel: 'Email',
+        modalTitle: 'Ready?',
+        modalSubtitle: 'Enter email and get your download link (30 seconds)',
+        modalDesc: 'No long forms. No unnecessary questions. Just email and link. That\'s it.',
+        emailLabel: 'Email address',
         submitBtn: 'Send me the link',
         successTitle: 'Done!',
         successDesc: 'Your unique download link:',
-        expiryNote: 'Link expires in 24 hours'
+        expiryNote: 'Link is valid for 24 hours. Use it anywhere.'
       }
     };
 
@@ -769,8 +658,7 @@
 
     function openModal() {
       document.getElementById('downloadModal').classList.add('active');
-      document.getElementById('modalForm').style.display = 'block';
-      document.getElementById('modalSuccess').style.display = 'none';
+      document.getElementById('email').focus();
     }
 
     function closeModal() {
@@ -785,13 +673,19 @@
 
     async function handleSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('email').value;
+      const email = document.getElementById('email').value.trim();
       const errorMsg = document.getElementById('errorMessage');
       const submitBtn = document.getElementById('submitBtn');
 
+      if (!email.includes('@')) {
+        errorMsg.textContent = currentLang === 'sk' ? 'Neplatný email' : 'Invalid email';
+        errorMsg.classList.add('active');
+        return;
+      }
+
       errorMsg.classList.remove('active');
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Posielam...';
+      submitBtn.textContent = currentLang === 'sk' ? 'Posielam...' : 'Sending...';
 
       try {
         const response = await fetch('/api/generate-token', {
@@ -803,7 +697,7 @@
         const data = await response.json();
 
         if (!response.ok) {
-          errorMsg.textContent = data.error || 'Invalid email';
+          errorMsg.textContent = data.error || 'Error occurred';
           errorMsg.classList.add('active');
           submitBtn.disabled = false;
           submitBtn.textContent = translations[currentLang].submitBtn;
@@ -814,7 +708,7 @@
         document.getElementById('modalSuccess').style.display = 'block';
         document.getElementById('downloadLink').href = `/api/download/${data.token}`;
       } catch (error) {
-        errorMsg.textContent = 'Error. Try again.';
+        errorMsg.textContent = 'Network error. Try again.';
         errorMsg.classList.add('active');
         submitBtn.disabled = false;
         submitBtn.textContent = translations[currentLang].submitBtn;
