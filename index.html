@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlukimDictate — Nadiktuj zadarmo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #f4f4f5;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 72px;
+            margin-bottom: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 16px;
+            color: #a1a1aa;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .form-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        input[type="email"] {
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 10px;
+            color: #f4f4f5;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input[type="email"]:focus {
+            border-color: #f97316;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        input::placeholder {
+            color: #71717a;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .download-section {
+            display: none;
+            padding: 32px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            margin-top: 32px;
+        }
+
+        .download-section.visible {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .download-section h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: #22c55e;
+        }
+
+        .download-link {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: 12px;
+        }
+
+        .download-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+        }
+
+        .error {
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .error.visible {
+            display: block;
+        }
+
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #a1a1aa;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: #f97316;
+            border-color: #f97316;
+            color: white;
+        }
+
+        .lang-btn:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .text {
+            display: none;
+        }
+
+        .text.active {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('sk')"><span class="text-sk active">SK</span></button>
+        <button class="lang-btn" onclick="setLang('en')"><span class="text-en">EN</span></button>
+    </div>
+
+    <div class="container">
+        <div class="logo">🎤</div>
+
+        <h1>
+            <span class="text text-sk active">AlukimDictate</span>
+            <span class="text text-en">AlukimDictate</span>
+        </h1>
+
+        <p class="tagline">
+            <span class="text text-sk active">Nadiktuj si text zadarmo.<br>Dvojklik ⌘ → hovor → hotovo.</span>
+            <span class="text text-en">Dictate for free.<br>Double-tap ⌘ → speak → done.</span>
+        </p>
+
+        <form id="email-form" class="form-wrapper">
+            <input
+                type="email"
+                id="email"
+                placeholder="tvoj@email.com"
+                required
+                data-placeholder-sk="tvoj@email.com"
+                data-placeholder-en="your@email.com"
+            >
+            <button type="submit" class="btn">
+                <span class="text text-sk active">Stiahnúť aplikáciu</span>
+                <span class="text text-en">Download app</span>
+            </button>
+            <div class="error" id="error"></div>
+        </form>
+
+        <div id="download-section" class="download-section">
+            <h2>✓ <span class="text text-sk active">Hotovo!</span><span class="text text-en">Done!</span></h2>
+            <p style="font-size: 14px; color: #a1a1aa; margin-bottom: 16px;">
+                <span class="text text-sk active">Tvoj unikátny download link:</span>
+                <span class="text text-en">Your unique download link:</span>
+            </p>
+            <a href="#" id="download-link" class="download-link" download="AlukimDictate.zip">
+                <span class="text text-sk active">📥 Stiahnúť AlukimDictate</span>
+                <span class="text text-en">📥 Download AlukimDictate</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('email-form');
+        const emailInput = document.getElementById('email');
+        const errorBox = document.getElementById('error');
+        const downloadSection = document.getElementById('download-section');
+        const downloadLink = document.getElementById('download-link');
+
+        let currentLang = localStorage.getItem('dictate-lang') || 'sk';
+        setLang(currentLang);
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('dictate-lang', lang);
+
+            document.querySelectorAll('[class*="text-"]').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll('.text-' + lang).forEach(el => {
+                el.classList.add('active');
+            });
+
+            document.querySelectorAll('[data-placeholder-' + lang + ']').forEach(input => {
+                input.placeholder = input.getAttribute('data-placeholder-' + lang);
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.documentElement.lang = lang;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorBox.classList.remove('visible');
+
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            try {
+                const response = await fetch('/api/generate-token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, lang: currentLang })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.token) {
+                    downloadLink.href = `/download/${data.token}`;
+                    form.style.display = 'none';
+                    downloadSection.classList.add('visible');
+                } else {
+                    showError(data.error || (currentLang === 'sk' ? 'Chyba. Skús neskôr.' : 'Error. Try again.'));
+                }
+            } catch (err) {
+                showError(currentLang === 'sk' ? 'Sieťová chyba.' : 'Network error.');
+            }
+        });
+
+        function showError(msg) {
+            errorBox.textContent = msg;
+            errorBox.classList.add('visible');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "dictate-alukim",
+  "version": "1.0.0",
+  "description": "AlukimDictate landing page",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "node api/index.js",
+    "build": "echo 'No build needed'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "crypto": "^1.0.1"
+  }
+}
