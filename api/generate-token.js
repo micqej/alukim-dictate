@@ -1,14 +1,15 @@
 import { randomBytes } from 'crypto';
 
-const tokens = new Map(); // In production, use database
+// In-memory token store - persists for the lifetime of this serverless instance
+const tokens = new Map();
 
-export async function POST(req) {
+export async function POST(req, res) {
   const { email, lang = 'sk' } = req.body;
 
   if (!email || !email.includes('@')) {
-    return new Response(JSON.stringify({
+    return res.status(400).json({
       error: lang === 'sk' ? 'Neplatný email' : 'Invalid email'
-    }), { status: 400 });
+    });
   }
 
   // Generate unique token
@@ -30,8 +31,5 @@ export async function POST(req) {
     }
   }
 
-  return new Response(JSON.stringify({ token }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' }
-  });
+  return res.status(200).json({ token });
 }

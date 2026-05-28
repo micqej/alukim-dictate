@@ -1,29 +1,14 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+// For MVP: simplified download without token verification
+// TODO: In production, verify token from persistent store (database)
 
-const tokens = new Map(); // Same as generate-token
+export async function GET(req, res) {
+  const { token } = req.query;
 
-export async function GET(req, { params }) {
-  const { token } = params;
-
-  // Verify token exists and is not expired
-  const tokenData = tokens.get(token);
-  if (!tokenData || tokenData.expiresAt < Date.now()) {
-    return new Response('Token expired or invalid', { status: 401 });
+  if (!token) {
+    return res.status(400).json({ error: 'Token required' });
   }
 
-  try {
-    // In production, serve from /public/install/AlukimDictate.zip
-    // For now, return a redirect to the file
-    return new Response(null, {
-      status: 302,
-      headers: {
-        'Location': '/install/AlukimDictate.zip',
-        'Content-Disposition': 'attachment; filename="AlukimDictate.zip"'
-      }
-    });
-  } catch (error) {
-    console.error('Download error:', error);
-    return new Response('Download failed', { status: 500 });
-  }
+  // For MVP: redirect to the ZIP file
+  // Token verification will be implemented when using persistent storage
+  return res.redirect(302, '/install/AlukimDictate.zip');
 }
