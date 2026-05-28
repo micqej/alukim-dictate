@@ -807,7 +807,7 @@
 
         document.getElementById('modalForm').style.display = 'none';
         document.getElementById('modalSuccess').style.display = 'block';
-        document.getElementById('downloadLink').href = `/api/download/${data.token}`;
+        document.getElementById('downloadLink').href = `/api/download?token=${data.token}`;
       } catch (error) {
         console.error(error);
         errorMsg.textContent = currentLang === 'sk' ? 'Sieťová chyba' : 'Network error';

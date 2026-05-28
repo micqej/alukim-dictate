@@ -1,8 +1,4 @@
-module.exports = async function handler(req, res) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
+module.exports = function handler(req, res) {
   const { token } = req.query;
 
   if (!token) {
