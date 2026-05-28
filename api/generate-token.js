@@ -1,9 +1,13 @@
-import { randomBytes } from 'crypto';
+const { randomBytes } = require('crypto');
 
-// In-memory token store - persists for the lifetime of this serverless instance
+// In-memory token store
 const tokens = new Map();
 
-export async function POST(req, res) {
+module.exports = async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   const { email, lang = 'sk' } = req.body;
 
   if (!email || !email.includes('@')) {
@@ -12,24 +16,29 @@ export async function POST(req, res) {
     });
   }
 
-  // Generate unique token
-  const token = randomBytes(32).toString('hex');
-  const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+  try {
+    // Generate unique token
+    const token = randomBytes(32).toString('hex');
+    const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
 
-  // Store token (in production, save to DB)
-  tokens.set(token, {
-    email,
-    createdAt: Date.now(),
-    expiresAt,
-    downloaded: false
-  });
+    // Store token
+    tokens.set(token, {
+      email,
+      createdAt: Date.now(),
+      expiresAt,
+      downloaded: false
+    });
 
-  // Clean up expired tokens periodically
-  for (const [key, value] of tokens.entries()) {
-    if (value.expiresAt < Date.now()) {
-      tokens.delete(key);
+    // Clean up expired tokens
+    for (const [key, value] of tokens.entries()) {
+      if (value.expiresAt < Date.now()) {
+        tokens.delete(key);
+      }
     }
-  }
 
-  return res.status(200).json({ token });
-}
+    return res.status(200).json({ token });
+  } catch (error) {
+    console.error('Token generation error:', error);
+    return res.status(500).json({ error: 'Failed to generate token' });
+  }
+};
