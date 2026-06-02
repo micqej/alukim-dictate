@@ -5,819 +5,145 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AlukimDictate - Vrátite si 10 hodín týždenne</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #0a1628 0%, #1a2847 50%, #0f1d35 100%);
-      color: #f0f0f0;
+      background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+      color: #1a1a1a;
       line-height: 1.6;
       min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
     }
-
-    /* Animated background */
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background:
-        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(255, 59, 48, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(76, 175, 80, 0.08) 0%, transparent 50%);
       pointer-events: none;
       animation: float 15s ease-in-out infinite;
       z-index: 0;
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0px) translateX(0px); }
       50% { transform: translateY(20px) translateX(10px); }
     }
-
-    section, nav {
-      position: relative;
-      z-index: 1;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-      background: rgba(10, 22, 40, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-      z-index: 100;
-    }
-
-    .nav-logo {
-      font-weight: 800;
-      font-size: 1.3rem;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .lang-toggle {
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      color: #818cf8;
-      transition: all 0.3s;
-      font-size: 0.9rem;
-    }
-
-    .lang-toggle:hover {
-      background: rgba(99, 102, 241, 0.2);
-      border-color: #6366f1;
-    }
-
-    /* Hero */
-    .hero {
-      padding-top: 140px;
-      padding-bottom: 80px;
-      text-align: center;
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    h1 {
-      font-size: 4rem;
-      font-weight: 900;
-      color: #ffffff;
-      margin-bottom: 1rem;
-      line-height: 1.1;
-      animation: slideDown 0.8s ease-out;
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .tagline {
-      font-size: 1.5rem;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 2rem;
-      font-weight: 700;
-      animation: slideDown 0.8s ease-out 0.1s backwards;
-    }
-
-    .hero-text {
-      max-width: 650px;
-      margin: 0 auto 2.5rem;
-      font-size: 1.2rem;
-      color: #c7d2e0;
-      line-height: 1.8;
-      animation: slideDown 0.8s ease-out 0.2s backwards;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      color: white;
-      padding: 1.3rem 3rem;
-      border-radius: 12px;
-      font-size: 1.15rem;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.4);
-      text-decoration: none;
-      animation: slideDown 0.8s ease-out 0.3s backwards;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 25px 60px rgba(99, 102, 241, 0.6);
-    }
-
-    .cta-button:active {
-      transform: translateY(-2px);
-    }
-
-    /* Section */
-    section {
-      padding: 5rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    h2 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-
-    /* Benefits */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .benefit {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      padding: 2.5rem;
-      border-radius: 16px;
-      transition: all 0.3s;
-      animation: slideUp 0.6s ease-out backwards;
-    }
-
-    .benefit:nth-child(1) { animation-delay: 0.1s; }
-    .benefit:nth-child(2) { animation-delay: 0.2s; }
-    .benefit:nth-child(3) { animation-delay: 0.3s; }
-    .benefit:nth-child(4) { animation-delay: 0.4s; }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .benefit:hover {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
-      border-color: rgba(99, 102, 241, 0.4);
-      transform: translateY(-8px);
-    }
-
-    .benefit-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .benefit h4 {
-      color: #c7d2e0;
-      font-size: 1.25rem;
-      margin-bottom: 0.8rem;
-      font-weight: 700;
-    }
-
-    .benefit p {
-      color: #94a3b8;
-      line-height: 1.7;
-      font-size: 1rem;
-    }
-
-    /* How Section */
-    .how-section {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
-      border-top: 1px solid rgba(99, 102, 241, 0.2);
-      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .step {
-      background: rgba(15, 29, 53, 0.5);
-      backdrop-filter: blur(10px);
-      padding: 2rem;
-      border-radius: 12px;
-      border-left: 4px solid #6366f1;
-      transition: all 0.3s;
-      animation: slideUp 0.6s ease-out backwards;
-    }
-
-    .step:nth-child(1) { animation-delay: 0.1s; }
-    .step:nth-child(2) { animation-delay: 0.2s; }
-    .step:nth-child(3) { animation-delay: 0.3s; }
-
-    .step:hover {
-      background: rgba(15, 29, 53, 0.8);
-      border-left-color: #a855f7;
-      transform: translateX(8px);
-    }
-
-    .step-number {
-      font-size: 2.8rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-    }
-
-    .step h4 {
-      font-size: 1.3rem;
-      color: #ffffff;
-      margin-bottom: 0.8rem;
-    }
-
-    .step p {
-      color: #a0aec0;
-      line-height: 1.6;
-    }
-
-    /* Stats */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-      text-align: center;
-    }
-
-    .stat {
-      padding: 2rem;
-      animation: slideUp 0.6s ease-out backwards;
-    }
-
-    .stat:nth-child(1) { animation-delay: 0.1s; }
-    .stat:nth-child(2) { animation-delay: 0.2s; }
-    .stat:nth-child(3) { animation-delay: 0.3s; }
-    .stat:nth-child(4) { animation-delay: 0.4s; }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: #94a3b8;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    /* CTA Section */
-    .cta-final {
-      text-align: center;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      border-radius: 16px;
-      padding: 4rem;
-      margin: 4rem 0;
-      box-shadow: 0 25px 60px rgba(99, 102, 241, 0.3);
-    }
-
-    .cta-final h3 {
-      font-size: 2.5rem;
-      color: white;
-      margin-bottom: 1rem;
-      font-weight: 800;
-    }
-
-    .cta-final p {
-      font-size: 1.15rem;
-      color: rgba(255, 255, 255, 0.95);
-      margin-bottom: 2rem;
-    }
-
-    .cta-button-white {
-      display: inline-block;
-      background: white;
-      color: #6366f1;
-      padding: 1.2rem 3rem;
-      border-radius: 12px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: all 0.3s;
-      text-decoration: none;
-    }
-
-    .cta-button-white:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Modal */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal {
-      background: linear-gradient(135deg, #1a2847 0%, #0f1d35 100%);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: 20px;
-      padding: 3rem;
-      max-width: 500px;
-      width: 100%;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-      animation: slideUp 0.3s ease;
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      cursor: pointer;
-      color: #64748b;
-      transition: color 0.3s;
-    }
-
-    .modal-close:hover {
-      color: #6366f1;
-    }
-
-    .modal h2 {
-      font-size: 2rem;
-      color: #ffffff;
-      margin-bottom: 0.5rem;
-      font-weight: 800;
-    }
-
-    .modal-subtitle {
-      color: #a855f7;
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    .modal p {
-      color: #94a3b8;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.6rem;
-      color: #c7d2e0;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 1rem;
-      background: rgba(99, 102, 241, 0.08);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: 10px;
-      color: #ffffff;
-      font-size: 1rem;
-      transition: all 0.3s;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      background: rgba(99, 102, 241, 0.15);
-      border-color: #6366f1;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-    }
-
-    .form-group input::placeholder {
-      color: #64748b;
-    }
-
-    .error-message {
-      color: #ff6b6b;
-      padding: 1rem;
-      background: rgba(255, 107, 107, 0.1);
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      display: none;
-      font-size: 0.95rem;
-      border: 1px solid rgba(255, 107, 107, 0.3);
-    }
-
-    .error-message.active {
-      display: block;
-    }
-
-    .modal-success {
-      text-align: center;
-      display: none;
-    }
-
-    .modal-success.active {
-      display: block;
-    }
-
-    .success-icon {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      animation: bounce 0.6s ease;
-    }
-
-    @keyframes bounce {
-      0% { transform: scale(0.5); opacity: 0; }
-      70% { transform: scale(1.1); }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .download-link {
-      display: inline-block;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      color: white;
-      padding: 1.2rem 2.5rem;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      margin: 1.5rem 0;
-      transition: all 0.3s;
-      font-size: 1.05rem;
-      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
-    }
-
-    .download-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.4);
-    }
-
-    .success-text {
-      color: #94a3b8;
-      margin-top: 1rem;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 2.5rem; }
-      h2 { font-size: 2rem; }
-      .tagline { font-size: 1.2rem; }
-      .hero-text { font-size: 1.05rem; }
-      .modal { padding: 2rem; }
-    }
+    .container { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; padding-bottom: 30px; border-bottom: 2px solid rgba(0,0,0,0.05); }
+    .logo { font-size: 24px; font-weight: 700; background: linear-gradient(135deg, #FF3B30, #FF9500, #34C759); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .lang-toggle { display: flex; gap: 10px; font-size: 12px; }
+    .lang-btn { padding: 8px 12px; border: 2px solid #ddd; background: white; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .lang-btn.active { background: linear-gradient(135deg, #FF3B30, #FF9500); color: white; border-color: #FF9500; }
+    .main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; flex: 1; align-items: start; }
+    .live-feed { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .live-header { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; }
+    .live-badge { width: 12px; height: 12px; background: #FF3B30; border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .live-header h3 { font-size: 18px; font-weight: 600; color: #1a1a1a; }
+    .downloads-list { display: flex; flex-direction: column; gap: 15px; max-height: 500px; overflow-y: auto; }
+    .download-item { padding: 15px; background: #f8f8f8; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; animation: slideIn 0.5s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    .download-info { display: flex; align-items: center; gap: 12px; flex: 1; }
+    .country-flag { font-size: 24px; min-width: 30px; text-align: center; }
+    .download-details { flex: 1; }
+    .download-name { font-weight: 600; color: #1a1a1a; font-size: 14px; }
+    .download-time { font-size: 12px; color: #999; margin-top: 2px; }
+    .cta-section { display: flex; flex-direction: column; gap: 30px; }
+    .story-box { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .story-box h2 { font-size: 24px; margin-bottom: 15px; background: linear-gradient(135deg, #FF3B30, #34C759); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .story-box p { font-size: 15px; line-height: 1.8; color: #666; margin-bottom: 15px; }
+    .counter-box { background: linear-gradient(135deg, #FF9500, #FF3B30); border-radius: 12px; padding: 20px; color: white; text-align: center; margin: 20px 0; }
+    .counter-number { font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 5px; }
+    .counter-text { font-size: 14px; opacity: 0.9; }
+    .form-box { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .form-box h3 { font-size: 18px; margin-bottom: 20px; color: #1a1a1a; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #666; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-group input { width: 100%; padding: 12px 15px; border: 2px solid #eee; border-radius: 8px; font-size: 14px; transition: all 0.3s; font-family: inherit; }
+    .form-group input:focus { outline: none; border-color: #FF3B30; box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.1); }
+    .submit-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #FF3B30, #FF9500); color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px; }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 59, 48, 0.3); }
+    .privacy-notice { font-size: 12px; color: #999; text-align: center; margin-top: 15px; line-height: 1.5; }
+    @media (max-width: 1024px) { .main-content { grid-template-columns: 1fr; gap: 30px; } }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-logo">AlukimDictate</div>
-    <button class="lang-toggle" id="langToggle">EN</button>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="tagline" id="tagline">Vrátite si 10 hodín týždenne</div>
-    <h1 id="h1">Prestanite písať.<br>Začnite diktovať.</h1>
-    <p class="hero-text" id="heroText">Každý deň stratíte hodiny písaním. Diktovanie je 3x rýchlejšie. Bez poplatkov, bez registrácie, bez BS.</p>
-    <button class="cta-button" onclick="openModal()" id="ctaMain">Stiahnúť zadarmo</button>
-  </section>
-
-  <!-- Benefits -->
-  <section>
-    <h2 id="benefitsTitle">Prečo AlukimDictate?</h2>
-    <div class="benefits-grid">
-      <div class="benefit">
-        <span class="benefit-icon">⚡</span>
-        <h4 id="b1">3x rýchlejšie</h4>
-        <p id="b1d">Diktovať je 3x rýchlejšie ako písať. Skončite 10 hodín práce za 3 hodiny.</p>
-      </div>
-      <div class="benefit">
-        <span class="benefit-icon">🔒</span>
-        <h4 id="b2">Vaše dáta ostanú vaše</h4>
-        <p id="b2d">Žiadne servery. Žiadne záznamy. Audio sa nikdy neopúšťa váš Mac.</p>
-      </div>
-      <div class="benefit">
-        <span class="benefit-icon">🌍</span>
-        <h4 id="b3">Funguje všade</h4>
-        <p id="b3d">Email, Slack, Notes, Dokumenty... Diktuj kdekoľvek jedným klikom.</p>
-      </div>
-      <div class="benefit">
-        <span class="benefit-icon">✓</span>
-        <h4 id="b4">99% presnosť</h4>
-        <p id="b4d">AI rozumie kontextu. Bez chýb, len text, ktorý chcete.</p>
+  <div class="container">
+    <div class="header">
+      <div class="logo">🎤 AlukimDictate</div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('sk')">🇸🇰 SK</button>
+        <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
       </div>
     </div>
-  </section>
 
-  <!-- How -->
-  <section class="how-section">
-    <h2 id="howTitle">Ako to funguje</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4 id="s1">Stiahni</h4>
-        <p id="s1d">Download. Dvakrát klikni. Hotovo. Bez komplikácií.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4 id="s2">Pridaj kľúč</h4>
-        <p id="s2d">Bezplatný API z Groq. Vloží sa do nastavení. Bez kreditnej karty.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4 id="s3">Diktuj</h4>
-        <p id="s3d">⌘⌘ + hovor. Text sa vloží. Hotovo.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <section>
-    <h2 id="statsTitle">Čísla</h2>
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-number">99%</div>
-        <div class="stat-label" id="stat1">Presnosť</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">8h</div>
-        <div class="stat-label" id="stat2">Bezplatne/deň</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">&lt;1s</div>
-        <div class="stat-label" id="stat3">Rýchlosť</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">€0</div>
-        <div class="stat-label" id="stat4">Navždy</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section>
-    <div class="cta-final">
-      <h3 id="ctaTitle">Prestanite traziť čas.</h3>
-      <p id="ctaSubtitle">Skúste teraz. Zadarmo. Bez komplikácií.</p>
-      <button class="cta-button-white" onclick="openModal()" id="ctaFinal">Stiahnúť AlukimDictate</button>
-    </div>
-  </section>
-
-  <!-- Modal -->
-  <div class="modal-overlay" id="downloadModal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-
-      <div id="modalForm">
-        <h2 id="modalTitle">Pripravený?</h2>
-        <div class="modal-subtitle" id="modalSubtitle">Email a hotovo</div>
-        <p id="modalDesc">Pošleme ti bezpečný download link. Bez dlhých formulárov. Žiadne BS.</p>
-
-        <div class="error-message" id="errorMessage"></div>
-
-        <form onsubmit="handleSubmit(event)" id="emailForm">
-          <div class="form-group">
-            <label for="email" id="emailLabel">Email</label>
-            <input type="email" id="email" required placeholder="tvoj@email.sk" autocomplete="email">
+    <div class="main-content">
+      <div class="live-feed">
+        <div class="live-header">
+          <div class="live-badge"></div>
+          <h3>Živý prenosy stiahnutí</h3>
+        </div>
+        <div class="downloads-list">
+          <div class="download-item">
+            <div class="download-info">
+              <div class="country-flag">🇸🇰</div>
+              <div class="download-details">
+                <div class="download-name">Michal Šimko</div>
+                <div class="download-time">Pred 5 minútami</div>
+              </div>
+            </div>
           </div>
-          <button type="submit" class="cta-button" style="width: 100%;" id="submitBtn">Pošli mi link</button>
-        </form>
+        </div>
       </div>
 
-      <div id="modalSuccess" class="modal-success">
-        <div class="success-icon">✓</div>
-        <h2 id="successTitle">Hotovo!</h2>
-        <p id="successDesc">Tvoj download link:</p>
-        <a href="#" class="download-link" id="downloadLink">Stiahnúť AlukimDictate</a>
-        <p class="success-text" id="expiryNote">Platný 24 hodín</p>
+      <div class="cta-section">
+        <div class="story-box">
+          <h2>Prečo AlukimDictate?</h2>
+          <p>Vytvoril som to pre seba. Existujú podobné nástroje ako Whisper, ale sú platené a nefungujú tak, ako som chcel. Preto som si vytvoril svoj vlastný - rýchly, bezplatný a bez zbytočných komplikácií.</p>
+          <div class="counter-box">
+            <div class="counter-number">247</div>
+            <div class="counter-text">ľudí si ho už stiahlo</div>
+          </div>
+        </div>
+
+        <div class="form-box">
+          <h3>Stiahnúť zadarmo</h3>
+          <form onsubmit="handleDownload(event)">
+            <div class="form-group">
+              <label for="name">Meno</label>
+              <input type="text" id="name" required placeholder="Tvoje meno">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required placeholder="tvoj@email.com">
+            </div>
+            <button type="submit" class="submit-btn">Stiahnúť zadarmo</button>
+            <div class="privacy-notice">Tvoj email sa používa len na posielanie linku. Žiadny spam.</div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    const translations = {
-      sk: {
-        langBtn: 'EN',
-        tagline: 'Vrátite si 10 hodín týždenne',
-        h1: 'Prestanite písať.\nZačnite diktovať.',
-        heroText: 'Každý deň stratíte hodiny písaním. Diktovanie je 3x rýchlejšie. Bez poplatkov, bez registrácie, bez BS.',
-        ctaMain: 'Stiahnúť zadarmo',
-        benefitsTitle: 'Prečo AlukimDictate?',
-        b1: '3x rýchlejšie', b1d: 'Diktovať je 3x rýchlejšie ako písať. Skončite 10 hodín práce za 3 hodiny.',
-        b2: 'Vaše dáta ostanú vaše', b2d: 'Žiadne servery. Žiadne záznamy. Audio sa nikdy neopúšťa váš Mac.',
-        b3: 'Funguje všade', b3d: 'Email, Slack, Notes, Dokumenty... Diktuj kdekoľvek jedným klikom.',
-        b4: '99% presnosť', b4d: 'AI rozumie kontextu. Bez chýb, len text, ktorý chcete.',
-        howTitle: 'Ako to funguje',
-        s1: 'Stiahni', s1d: 'Download. Dvakrát klikni. Hotovo. Bez komplikácií.',
-        s2: 'Pridaj kľúč', s2d: 'Bezplatný API z Groq. Vloží sa do nastavení. Bez kreditnej karty.',
-        s3: 'Diktuj', s3d: '⌘⌘ + hovor. Text sa vloží. Hotovo.',
-        statsTitle: 'Čísla',
-        stat1: 'Presnosť', stat2: 'Bezplatne/deň', stat3: 'Rýchlosť', stat4: 'Navždy',
-        ctaTitle: 'Prestanite traziť čas.',
-        ctaSubtitle: 'Skúste teraz. Zadarmo. Bez komplikácií.',
-        ctaFinal: 'Stiahnúť AlukimDictate',
-        modalTitle: 'Pripravený?',
-        modalSubtitle: 'Email a hotovo',
-        modalDesc: 'Pošleme ti bezpečný download link. Bez dlhých formulárov. Žiadne BS.',
-        emailLabel: 'Email',
-        submitBtn: 'Pošli mi link',
-        successTitle: 'Hotovo!',
-        successDesc: 'Tvoj download link:',
-        expiryNote: 'Platný 24 hodín'
-      },
-      en: {
-        langBtn: 'SK',
-        tagline: 'Get back 10 hours a week',
-        h1: 'Stop typing.\nStart dictating.',
-        heroText: 'You lose hours every day typing. Dictating is 3x faster. No fees, no signup, no BS.',
-        ctaMain: 'Download free',
-        benefitsTitle: 'Why AlukimDictate?',
-        b1: '3x faster', b1d: 'Dictating is 3x faster than typing. Do 10 hours of work in 3.',
-        b2: 'Your data stays yours', b2d: 'No servers. No recordings. Audio never leaves your Mac.',
-        b3: 'Works everywhere', b3d: 'Email, Slack, Notes, Docs... Dictate anywhere with one click.',
-        b4: '99% accurate', b4d: 'AI understands context. No errors. Just text you need.',
-        howTitle: 'How it works',
-        s1: 'Download', s1d: 'Download. Double-click. Done. No complications.',
-        s2: 'Add key', s2d: 'Free API from Groq. Paste in settings. No credit card.',
-        s3: 'Dictate', s3d: '⌘⌘ + speak. Text inserts. Done.',
-        statsTitle: 'Numbers',
-        stat1: 'Accuracy', stat2: 'Free/day', stat3: 'Speed', stat4: 'Forever',
-        ctaTitle: 'Stop wasting time.',
-        ctaSubtitle: 'Try now. Free. No bullshit.',
-        ctaFinal: 'Download AlukimDictate',
-        modalTitle: 'Ready?',
-        modalSubtitle: 'Email and done',
-        modalDesc: 'We\'ll send you a secure download link. No long forms. No BS.',
-        emailLabel: 'Email',
-        submitBtn: 'Send me the link',
-        successTitle: 'Done!',
-        successDesc: 'Your download link:',
-        expiryNote: 'Valid for 24 hours'
-      }
-    };
-
-    let currentLang = localStorage.getItem('lang') || 'sk';
-
-    function updateLanguage(lang) {
-      currentLang = lang;
-      localStorage.setItem('lang', lang);
-      Object.keys(translations[lang]).forEach(key => {
-        const el = document.getElementById(key);
-        if (el) {
-          if (key === 'h1' || key === 'modalDesc' || key === 'heroText') {
-            el.textContent = translations[lang][key];
-          } else {
-            el.textContent = translations[lang][key];
-          }
-        }
-      });
-      document.documentElement.lang = lang;
-    }
-
-    document.getElementById('langToggle').addEventListener('click', () => {
-      updateLanguage(currentLang === 'sk' ? 'en' : 'sk');
-    });
-
-    function openModal() {
-      document.getElementById('downloadModal').classList.add('active');
-      document.getElementById('email').focus();
-    }
-
-    function closeModal() {
-      document.getElementById('downloadModal').classList.remove('active');
-      document.getElementById('emailForm').reset();
-      document.getElementById('errorMessage').classList.remove('active');
-      document.getElementById('modalForm').style.display = 'block';
-      document.getElementById('modalSuccess').style.display = 'none';
-    }
-
-    document.getElementById('downloadModal').addEventListener('click', (e) => {
-      if (e.target.id === 'downloadModal') closeModal();
-    });
-
-    async function handleSubmit(e) {
+    async function handleDownload(e) {
       e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      const errorMsg = document.getElementById('errorMessage');
-      const submitBtn = document.getElementById('submitBtn');
-
-      errorMsg.classList.remove('active');
-
-      if (!email || !email.includes('@') || !email.includes('.')) {
-        errorMsg.textContent = currentLang === 'sk' ? 'Zadaj platný email' : 'Enter valid email';
-        errorMsg.classList.add('active');
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = currentLang === 'sk' ? 'Posielam...' : 'Sending...';
-
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
       try {
         const response = await fetch('/api/generate-token', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, lang: currentLang })
+          body: JSON.stringify({ email, name })
         });
-
         const data = await response.json();
-
-        if (!response.ok) {
-          errorMsg.textContent = data.error || (currentLang === 'sk' ? 'Chyba' : 'Error');
-          errorMsg.classList.add('active');
-          submitBtn.disabled = false;
-          submitBtn.textContent = translations[currentLang].submitBtn;
-          return;
-        }
-
-        document.getElementById('modalForm').style.display = 'none';
-        document.getElementById('modalSuccess').style.display = 'block';
-        document.getElementById('downloadLink').href = `/api/download?token=${data.token}`;
+        if (!response.ok) { alert(data.error || 'Error'); return; }
+        window.location.href = `/api/download?token=${data.token}`;
       } catch (error) {
-        console.error(error);
-        errorMsg.textContent = currentLang === 'sk' ? 'Sieťová chyba' : 'Network error';
-        errorMsg.classList.add('active');
-        submitBtn.disabled = false;
-        submitBtn.textContent = translations[currentLang].submitBtn;
+        alert('Error: ' + error.message);
       }
     }
-
-    updateLanguage(currentLang);
   </script>
 </body>
 </html>
